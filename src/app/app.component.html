@@ -1,4 +1,104 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
+<!-- <router-outlet></router-outlet> -->
+<h1>*ngSwitch</h1>
+<input type="text" required [(ngModel)]="person.name">
+<div [ngSwitch]="person.name">
+  <p *ngSwitchCase="'ebert'">
+    La persona es ebert
+  </p>
+  <p *ngSwitchCase="'nicolas'">
+    La persona es nicolas
+  </p>
+  <p *ngSwitchCase="'julian'">
+    La persona es julian
+  </p>
+  <p *ngSwitchDefault>
+    No hace match
+  </p>
+</div>
+<!-- <p *ngIf="person.name === 'ebert'">
+  La persona es ebert
 </p>
+<p *ngIf="person.name === 'nicolas'">
+  La persona es nicolas
+</p>
+<p *ngIf="person.name === 'julian'">
+  La persona es julian
+</p> -->
+
+<hr>
+<h1>*ngFor Objts</h1>
+<div>
+  <div *ngFor="let product of products">
+    <img width="250" [src]="product.image" alt="image">
+    <h2>{{ product.price}}</h2>
+    <p>{{product.name}}</p>
+  </div>
+</div>
+
+<hr>
+<h1>*ngFor</h1>
+<!-- <input type="text" [(ngModel)]="person.name"> -->
+<input type="text" [(ngModel)]="newName">
+<button (click)="addName()" >Add name</button>
+<ul>
+  <li
+    *ngFor="let name of names; index as i"
+    >
+    <a (click)="deleteName(i)">{{ i }} {{ name }}
+    </a>
+  </li>
+  <li *ngIf="names.length === 0">Lista vacia</li>
+</ul>
+<hr>
+<h1>*ngIf</h1>
+<input type="text" [(ngModel)]="person.name">
+<p *ngIf="person.name ==='ebert' && person.age === 18; else elseBlock"> Soy {{ person.name}}</p>
+<p *ngIf="person.name ==='nicolas'"> Soy {{ person.name}}</p>
+<ng-template #elseBlock>
+  <p>Bloque de else</p>
+</ng-template>
+
+<hr>
+<h1>NgModel</h1>
+<p>Nombre {{ person.name}}</p>
+<input type="text" #nameInput="ngModel" required [(ngModel)]="person.name">
+<p>Valid: {{nameInput.valid}}</p>
+<input type="number" #ageInput="ngModel" max="18" min="10" required [(ngModel)]="person.age">
+<p>Valid: {{ageInput.valid}}</p>
+<hr />
+<h1>Eventos</h1>
+<button type="button" [disabled]="btnDisabled">Enviar</button>
+<button type="button" (click)="toggleButton()">Toggle Button</button>
+<br>
+<div class="grid">
+  <button (click)="increaseAge()">Age++</button>
+  <p>Edad {{ person.age}}</p>
+  <button (click)="restAge()">Age--</button>
+</div>
+<div class="box" (scroll)="onScroll($event)">
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus placeat ipsam similique qui voluptatibus neque, incidunt soluta? Nulla nemo consequuntur expedita quam atque iste ad maxime pariatur incidunt! Rem, porro?
+  Dolor odit facere quasi nulla repudiandae iste, nostrum perferendis! Velit cupiditate illo similique dolor corrupti quae? Dicta maxime, ipsa debitis molestiae, est nulla omnis quia neque quidem cupiditate atque odit.
+  Voluptate libero impedit nulla. Nisi accusantium, culpa sunt debitis inventore, tempora quaerat accusamus consequuntur officiis esse voluptate incidunt natus, recusandae expedita facilis? Recusandae a minima cum! Aliquid debitis tempore dolorem.
+  Ullam vitae fuga, quia perspiciatis ducimus labore quaerat eius sit nisi odit mollitia amet maiores dolor nesciunt nihil! Placeat porro ratione assumenda sed et expedita! Error quo dolore totam voluptatibus?
+  Aut aspernatur maxime dolores deserunt voluptatibus blanditiis nemo ad, neque, perferendis debitis ab animi tempora voluptatem repudiandae aperiam dolorum, molestias quam id minus. Debitis quia nemo velit eveniet obcaecati rem!
+  Laudantium repellat fugiat magni quis et. Praesentium reiciendis quod expedita aliquid, eaque perferendis accusantium quis fugiat officia et molestiae, quasi corrupti earum repudiandae est esse repellat. Illum, aperiam suscipit! Similique.
+  Omnis sunt obcaecati facere iusto veniam. At repellat sunt accusantium voluptatibus mollitia pariatur facere non, repudiandae ipsam id, recusandae libero molestias nesciunt autem veritatis itaque beatae rem! Praesentium, recusandae enim.
+  Ullam enim, eius incidunt cum ipsum molestias consequuntur reprehenderit sed reiciendis neque fuga veritatis optio, repudiandae distinctio animi explicabo laudantium recusandae quod atque voluptatum. Pariatur placeat quibusdam veritatis eaque dicta.
+  Impedit, dolorum? Deleniti, incidunt adipisci? Dignissimos odio in laboriosam voluptatem delectus maxime porro quod repellendus tempore, officia quaerat cupiditate labore quidem quam aliquid dolorum mollitia fugit deleniti aut dicta suscipit!
+  Quibusdam sed, cupiditate omnis nostrum officiis voluptates fugiat quos sequi error maxime modi nam deserunt voluptas enim totam velit. Ex eos possimus provident cum repellat molestiae odio. Vero, quasi atque!</p>
+</div>
+<p>Nombre {{ person.name}}</p>
+<input type="text" [value]="person.name" (keyup)="changeName($event)">
+
+<hr>
+<h1>Propiedades</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<input type="text" [value]="person.name">
+<progress max="100" [value]="person.age"></progress>
+<img [src]="person.avatar" width="120">
+
+<h1>Hola Mundo</h1>
+<h2>{{ 'Hola Mundo '.repeat(3) }}</h2>
+<p>3 + 3 = {{ 3 + 3 }}</p>
+<h3>Hola, soy {{ name }} y tengo {{ age }}</h3>
+<img src={{img}} alt="imagen" width="100px">

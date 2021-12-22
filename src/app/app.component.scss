@@ -1,0 +1,28 @@
+.grid {
+  display: grid;
+  // grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 4fr 1fr;
+  align-items: center;
+
+}
+
+.box{
+  width: 200px;
+  height: 200px;
+  overflow: auto;
+  background: lightgreen;
+}
+
+ul li {
+  list-style: none;
+  cursor: pointer;
+  // text-decoration: none;
+  // text-decoration-style:none;
+}
+
+ul li a:hover {
+  background: lightslategrey;
+  color: #ffffff;
+}
+
+
